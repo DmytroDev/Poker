@@ -1,0 +1,11 @@
+{
+  "name": "poker",
+  "version": "1.0.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify-css": "^1.2.4"
+  },
+  "dependencies": {
+    "angular": "^1.5.5"
+  }
+}
