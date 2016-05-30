@@ -1,0 +1,23 @@
+body {
+
+}
+
+.siteHeader {
+    background: #333;
+    border-radius: 4px;
+}
+
+.container {
+    background: #e5e5e5;
+}
+
+.row {
+    background: #e5e5e5;
+}
+
+.panel {
+    background-color: #fcfff5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    padding: 12px;
+}

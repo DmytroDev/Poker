@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<link href="../../css/all.css" rel="stylesheet" media="screen" th:href="@{/resources/css/all.css}"/>-->
+</head>
+<body>
+<div class="siteHeader" th:fragment="header">
+    <div class="header-msg">Today: <span class="current-data-msg"
+                                         th:text="${#dates.format(#dates.createNow(),'dd MMM yyyy')}">current data</span>
+    </div>
+    <div class="header-right-part">
+        Welcome, <span th:text="${session.username}"/>
+        <!--    <nav class="site-header" th:fragment="header">
+            </nav>-->
+    </div>
+</div>
+
+</body>
+</html>

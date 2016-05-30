@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Poker</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+<!--<div id="table" class="table"></div>
+<div class="players">
+    <div id="player1" class="hand">
+        <h3>Player 1</h3>
+    </div>
+    <div id="player2" class="hand">
+        <h3>Player 2</h3>
+    </div>
+</div>
+<script src="script.js"></script>-->
+
+<div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">
+            &nbsp;</div>
+    </th:block>
+    <div class="row" id="row-id">
+        <div class="panel">
+
+            <a class="site-header__link" href="#" th:href="@{/}">Home</a>
+            <a class="site-header__link" href="/archive">Archive</a>
+            <a class="site-header__link" href="/logout" th:href="@{/logout}">Logout</a>
+        </div>
+        <!--<script src="../../../resources/js/main.js?q=123"></script>-->
+    </div>
+
+    <div id="table" class="table"></div>
+    <div class="players">
+        <div id ="player1" class="hand">
+            <h3>Player 1</h3>
+        </div>
+        <div id ="player2" class="hand">
+            <h3>Player 2</h3>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <div th:replace="fragments/footer :: footer">&copy; 2015 InAction Developers</div>
+</div>
+</body>
+</html>
