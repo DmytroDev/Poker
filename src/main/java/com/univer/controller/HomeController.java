@@ -18,6 +18,11 @@ public class HomeController {
     @Autowired
     private UserContainer userContainer;
 
+    @RequestMapping(value = {"/index"})
+    public String test(HttpSession session) {
+        return "index";
+    }
+
     @RequestMapping(value = {"/", "/homenotsignin"}, method = RequestMethod.GET)
     public String index(HttpSession session) {
         session.setAttribute("username", "guest");
@@ -48,5 +53,8 @@ public class HomeController {
         //mav.addObject("statistics", stat);
         return mav;
     }
+
+
+
 
 }

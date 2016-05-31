@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html ng-app="pokerApp" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Poker+</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,15 +9,16 @@
           <!--th:href="@{/resources/css/all.css}"/>-->
 
 </head>
-<body>
+<body ng-controller="MainController as abc">
 <div th:replace="fragments/header :: header">Header</div>
 <div class="container">
     <div class="row" id="row-id">
 <!--        <div class="col-4"> -->
-            <div class="panel">
-                <!--<h1>Peter Sportsy</h1>
-                <div class="user-description" rel="stylesheet"
-                     media="screen"/>-->
+            <!--<div ng-controller="secondController" class="panel">-->
+        <login-form/>
+                Input<input ng-model="abc.helloTest"/>
+                {{abc.helloTest}}
+                <button class="test-button" ng-click="abc.louder()">Test</button>
                 <p>
                     Welcome NEW PLAYER!!!!
                     Get started quickly by signing up.
@@ -31,7 +32,8 @@
                 <a class="site-header__link" href="/archive">Archive</a>
                 <a class="site-header__link" href="/logout" th:href="@{#}" onclick="$('#form').submit();">Logout</a>
                 <a class="site-header__link" href="/signin" th:href="@{/signin}">Sign in</a>
-            </div>
+            <!--</div>-->
+        </div>
         <!--<div class="statistic-div">
             <div class="panel">
                 <h2>This week:</h2>
@@ -111,10 +113,11 @@
             </div>
         </div>
     </div>-->
-    </div>
+   <!-- </div>-->
 
     <!--<div th:replace="fragments/footer :: footer">&copy; 2015 InAction Developers</div>-->
     <!--<script src="../../../resources/js/main.js?q=123"></script>-->
+    <script type="application/javascript" src="main.js"></script>
 </div>
 </body>
 </html>
