@@ -13,7 +13,7 @@ pokerApp.controller('MainController', function MainController() {
 /* create controller*/
 
 pokerApp.component('loginForm', {
-    /*template: '<h1>Login: {{$ctrl.login}}</h1>',*/
+    /*template: '<h1>Login: {{$ctrl.signin}}</h1>',*/
     templateUrl: 'test.html',
     controller: function () {
         this.login = 'user1';

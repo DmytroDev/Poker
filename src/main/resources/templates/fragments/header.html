@@ -4,7 +4,7 @@
     <!--<link href="../../css/all.css" rel="stylesheet" media="screen" th:href="@{/resources/css/all.css}"/>-->
 </head>
 <body>
-<div class="siteHeader" th:fragment="header">
+<div class="site-header" th:fragment="header">
     <div class="header-msg">Today: <span class="current-data-msg"
                                          th:text="${#dates.format(#dates.createNow(),'dd MMM yyyy')}">current data</span>
     </div>
@@ -13,6 +13,9 @@
         <!--    <nav class="site-header" th:fragment="header">
             </nav>-->
     </div>
+    <a href="/login">Login</a>
+    <a href="/result">Result</a>
+
 </div>
 
 </body>

@@ -18,15 +18,15 @@ public class HomeController {
     @Autowired
     private UserContainer userContainer;
 
-    @RequestMapping(value = {"/index"})
+/*    @RequestMapping(value = {"/index"})
     public String test(HttpSession session) {
         return "index";
-    }
+    }*/
 
     @RequestMapping(value = {"/", "/homenotsignin"}, method = RequestMethod.GET)
     public String index(HttpSession session) {
         session.setAttribute("username", "guest");
-        return "home/homeNotSignIn";
+        return "home/index";
     }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)

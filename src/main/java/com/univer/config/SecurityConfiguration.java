@@ -12,7 +12,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/welcome", "/login").permitAll();
+                .antMatchers("/", "/welcome", "/signin").permitAll();
 /*                .antMatchers("/", "/welcome", "/registration").permitAll()
                 .antMatchers("/dist*//**").permitAll()
                 .antMatchers("/assets*//**").permitAll()
@@ -20,7 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/signin")
                 .permitAll()
                 .and()
                 .logout()

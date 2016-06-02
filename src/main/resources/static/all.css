@@ -6,9 +6,39 @@ p {
 
 }
 
-.siteHeader {
+.site-header {
     background: #333;
+    color: #d1dbbd;
     border-radius: 4px;
+    height: 50px;
+}
+
+.site-header::after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.header-right-part {
+    float: right;
+    margin: 0 30px 0 0;
+    font-weight: bold;
+    color: inherit;
+    line-height: 50px; }
+
+.header-msg {
+    float: left;
+    margin-left: 10px;
+    font-weight: bold;
+    line-height: 50px;
+    color: inherit;
+}
+
+.site-footer {
+    background: #333;
+    color: #d1dbbd;
+    border-radius: 4px;
+    padding: 30px;
+    font-weight: bold;
 }
 
 .container {
