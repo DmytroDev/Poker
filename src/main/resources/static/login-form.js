@@ -2,19 +2,22 @@ var pokerApp = angular.module('pokerApp', ['ngRoute']);
 pokerApp.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $routeProvider.
-    when('/login', {
-        template: '<signin-form></signin-form>'
+    when('/home', {
+        template: '<home-form></home-form>'
     }).
-    when('/result', {
-        template: '<result-form></result-form>'
+    when('/signin', {
+        template: '<signin-form></signin-form>'
     }).
     when('/signup', {
         template: '<signup-form></signup-form>'
+    }).    
+    when('/result', {
+        template: '<result-form></result-form>'
     }).
     when('/authenticate', {
         template: '<authenticate-form></authenticate-form>'
     })
-        .otherwise('/login');  // д.б. что то из уже перечисленных. Будет срабатывать 
+        .otherwise('/home');  // д.б. что то из уже перечисленных. Будет срабатывать 
 });
 
 
@@ -26,16 +29,23 @@ pokerApp.controller('MainController', function MainController() {
 });
 
 pokerApp.component('signinForm', {
-    templateUrl: 'signin/login-form.html',
+    templateUrl: 'view/signin/login-form.html',
     controller: function () {
-        this.test = 'simply test value';
+        this.test = 'from signin';
     }
 });
 
 pokerApp.component('signupForm', {
-    templateUrl: 'signup/signup.html',
+    templateUrl: 'view/signup/signup.html',
     controller: function () {
-        this.test = 'simply test value';
+        this.test = 'from signup';
+    }
+});
+
+pokerApp.component('homeForm', {
+    templateUrl: 'view/home/home.html',
+    controller: function () {
+        this.test = 'from home';
     }
 });
 
@@ -44,12 +54,12 @@ pokerApp.controller('ResultController', function MainController($http) {
 
 });
 
-/* TODO: fix code ballow later */
+/* TODO: fix code bellow later */
 pokerApp.component('resultForm', {
     templateUrl: 'view/results.html',
     controller: function ($http) {
         $http.get('/statistic').then( function(response) {
-            console.log(response);
+            console.log(response.data);
         } );
         
     }

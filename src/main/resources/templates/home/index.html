@@ -3,17 +3,16 @@
 <head>
     <title>Poker+</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="application/javascript" src="angular.min.js"></script>
-    <script type="application/javascript" src="angular-route.min.js"></script>
     <link href="all.css" rel="stylesheet" media="screen"/>
+    <script type="application/javascript" src="vendor/jquery.min.js"></script>
+    <script type="application/javascript" src="vendor/angular.min.js"></script>
+    <script type="application/javascript" src="vendor/angular-route.min.js"></script>
     <base href="/">
 </head>
 
 <body>
 <div th:replace="fragments/header :: header">Header</div>
 <ng-view/>
-
 <script type="application/javascript" src="login-form.js"></script>
 <div th:replace="fragments/footer :: footer">&copy; 2016 DmytroDev</div>
 
