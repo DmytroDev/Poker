@@ -29,7 +29,7 @@ pokerApp.controller('MainController', function MainController() {
 });
 
 pokerApp.component('signinForm', {
-    templateUrl: 'view/signin/login-form.html',
+    templateUrl: 'view/signin/signin.html',
     controller: function () {
         this.test = 'from signin';
     }
@@ -56,7 +56,7 @@ pokerApp.controller('ResultController', function MainController($http) {
 
 /* TODO: fix code bellow later */
 pokerApp.component('resultForm', {
-    templateUrl: 'view/results.html',
+    templateUrl: 'view/game/results.html',
     controller: function ($http) {
         $http.get('/statistic').then( function(response) {
             console.log(response.data);

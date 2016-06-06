@@ -8,7 +8,7 @@
 /* create component */
 
 pokerApp.component('loginForm', {
-    templateUrl: 'signin/login-form.html',
+    templateUrl: 'signin/signin.html',
     controller: function () {
         /*this.login = 'user1';*/
     }
