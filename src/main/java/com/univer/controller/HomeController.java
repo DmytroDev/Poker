@@ -2,6 +2,7 @@ package com.univer.controller;
 
 import com.univer.helper.TOPScoreContainer;
 import com.univer.helper.UserContainer;
+/*import com.univer.model.CurrentUser;*/
 import com.univer.model.entity.TOPScore;
 import com.univer.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,15 @@ public class HomeController {
     @Autowired
     private TOPScoreContainer topScoreContainer;
 
+/*    @Autowired
+    private CurrentUser currentUser;*/
+
 /*    @RequestMapping(value = {"/index"})
     public String test(HttpSession session) {
         return "index";
     }*/
 
-    @RequestMapping(value = {"/", "/homenotsignin"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(HttpSession session) {
         session.setAttribute("username", "guest");
         return "home/index";
@@ -73,4 +77,13 @@ public class HomeController {
         List<TOPScore> topScores = topScoreContainer.getAll();
         return topScores;
     }
+
+    @RequestMapping(value = "/getRandomStat", method = RequestMethod.GET)
+    @ResponseBody
+    public Object doRandomStatistics() {
+        List<TOPScore> topScores = topScoreContainer.getAll();
+        return topScores;
+    }
+
+
 }

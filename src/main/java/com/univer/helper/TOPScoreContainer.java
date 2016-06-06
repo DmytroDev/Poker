@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class TOPScoreContainer {
@@ -17,11 +18,12 @@ public class TOPScoreContainer {
 
     private List<TOPScore> createTOPScoreList(){
         List<TOPScore> topScoreList = new ArrayList<TOPScore>();
-        topScoreList.add(new TOPScore("Guru", 1_000_000_000L));
-        topScoreList.add(new TOPScore("Lucky", 5_000_000L));
-        topScoreList.add(new TOPScore("Maverick", 100_000L));
-        topScoreList.add(new TOPScore("Dart Weider", 200_000_000L));
-        topScoreList.add(new TOPScore("Beginner", 5_000L));
+        Random random = new Random();
+        topScoreList.add(new TOPScore("Guru", 1_000_000_000L + random.nextInt(10000)));
+        topScoreList.add(new TOPScore("Lucky", 5_000_000L + random.nextInt(10000)));
+        topScoreList.add(new TOPScore("Maverick", 100_000L + random.nextInt(10000)));
+        topScoreList.add(new TOPScore("Dart Weider", 200_000_000L + random.nextInt(10000)));
+        topScoreList.add(new TOPScore("Beginner", 5_000L + random.nextInt(10000)));
 
         return topScoreList;
     }

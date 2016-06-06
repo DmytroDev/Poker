@@ -4,7 +4,7 @@ var gulp = require("gulp"),//http://gulpjs.com/
     autoprefixer = require('gulp-autoprefixer'),//https://www.npmjs.org/package/gulp-autoprefixer
     minifycss = require('gulp-minify-css'),//https://www.npmjs.org/package/gulp-minify-css
     rename = require('gulp-rename'),//https://www.npmjs.org/package/gulp-rename
-    //babel = require('gulp-babel'), 
+    babel = require('gulp-babel'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     log = util.log;
@@ -16,7 +16,7 @@ var ngSRC = "node_modules/angular/angular.min.js",
     jsSRC = "src/main/resources/js/",
     jsDEST = "src/main/resources/static/js";
 
-gulp.task("default", ["copyAngularLib"]);
+gulp.task("default", ["compressJS"]);
 
 gulp.task("copyAngularLib", function () {
     log("copyAngularLib (angular.min.js)");
@@ -34,6 +34,18 @@ gulp.task('compressJS', function () {
         .pipe(gulp.dest(jsDEST));
 });
 
+gulp.task("watch", function () {
+    log("Watching js files for modifications");
+    gulp.watch(jsSRC + "**/*.js", ["compressJS"]);
+});
+
+/*gulp.task('transform', () => {
+ return gulp.src(jsSRC)
+ .pipe(babel({
+ presets: ['es2015']
+ }))
+ .pipe(gulp.dest(jsDEST));
+ });*/
 //gulp.task("default", ["sass"]);
 
 /*gulp.task("sass", function () {
@@ -47,18 +59,9 @@ gulp.task('compressJS', function () {
         .pipe(gulp.dest(cssTarget));
 });*/
 
-/*gulp.task("watch", function () {
-    log("Watching scss files for modifications");
-    gulp.watch(sassFiles, ["sass"]);
-});*/
 
-/*gulp.task('transform', () => {
-    return gulp.src(jsSRC)
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest(jsDEST));
-});*/
+
+
 
 
 

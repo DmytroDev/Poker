@@ -1,11 +1,10 @@
 pokerApp.component('topscoresForm', {
     templateUrl: 'view/game/topscores.html',
-    controller: function ($scope, $http) {
+    controller: function (statisticService) {
         var vm = this;
-        $http.get('/statistic').
-        then( function(response) {
-            vm.topScores = response.data;
-            console.log(response.data);
+        statisticService.getStatistics().then(function (data) {
+            vm.topScores = data;
+            console.log(data);
         } );
     }
 });

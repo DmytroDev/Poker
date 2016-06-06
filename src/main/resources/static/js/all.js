@@ -81,14 +81,28 @@ pokerApp.component('signinForm', {
 pokerApp.component('signupForm', {
     templateUrl: 'view/signup/signup.html'
 });
+pokerApp.factory('statisticService', function($http) {
+    return {
+        getStatistics
+            /*getStatistics: getStatistics - for old versions*/
+    };
+
+    function getStatistics() {
+        return $http.get('/statistic').
+        then( function(response) {
+            console.log(response.data);
+            return response.data;
+        } );
+    }
+});
+
 pokerApp.component('topscoresForm', {
     templateUrl: 'view/game/topscores.html',
-    controller: function ($scope, $http) {
+    controller: function (statisticService) {
         var vm = this;
-        $http.get('/statistic').
-        then( function(response) {
-            vm.topScores = response.data;
-            console.log(response.data);
+        statisticService.getStatistics().then(function (data) {
+            vm.topScores = data;
+            console.log(data);
         } );
     }
 });
