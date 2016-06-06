@@ -1,12 +1,15 @@
 package com.univer.controller;
 
+import com.univer.helper.TOPScoreContainer;
 import com.univer.helper.UserContainer;
+import com.univer.model.entity.TOPScore;
 import com.univer.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +20,9 @@ public class HomeController {
 
     @Autowired
     private UserContainer userContainer;
+
+    @Autowired
+    private TOPScoreContainer topScoreContainer;
 
 /*    @RequestMapping(value = {"/index"})
     public String test(HttpSession session) {
@@ -54,7 +60,17 @@ public class HomeController {
         return mav;
     }
 
+    @RequestMapping(value = "/allusers", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllUsers() {
+        List<User> users = userContainer.getAll();
+        return users;
+    }
 
-
-
+    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    @ResponseBody
+    public Object doResult() {
+        List<TOPScore> topScores = topScoreContainer.getAll();
+        return topScores;
+    }
 }

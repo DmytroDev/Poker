@@ -1,23 +1,37 @@
 var gulp = require("gulp"),//http://gulpjs.com/
     util = require("gulp-util"),//https://github.com/gulpjs/gulp-util
-    //sass = require("gulp-sass"),//https://www.npmjs.org/package/gulp-sass
-    //autoprefixer = require('gulp-autoprefixer'),//https://www.npmjs.org/package/gulp-autoprefixer
+    sass = require("gulp-sass"),//https://www.npmjs.org/package/gulp-sass
+    autoprefixer = require('gulp-autoprefixer'),//https://www.npmjs.org/package/gulp-autoprefixer
     minifycss = require('gulp-minify-css'),//https://www.npmjs.org/package/gulp-minify-css
-    //rename = require('gulp-rename'),//https://www.npmjs.org/package/gulp-rename
-    //babel = require('gulp-babel'), // added
+    rename = require('gulp-rename'),//https://www.npmjs.org/package/gulp-rename
+    //babel = require('gulp-babel'), 
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
     log = util.log;
 
 /* require = launch concrete js-plugin (f.e.: gulp-minify-css, gulp-rename, etc).
 * */
-var jsSRC = "node_modules/angular/angular.min.js",  //"src/main/resources/js/main.js",
-    jsDEST = "src/main/resources/static/";    //  "src/main/webapp/resources/js/";
+var ngSRC = "node_modules/angular/angular.min.js",
+    ngDEST = "src/main/resources/static/vendor/",
+    jsSRC = "src/main/resources/js/",
+    jsDEST = "src/main/resources/static/js";
 
-gulp.task("default", ["copyResources"]);
+gulp.task("default", ["copyAngularLib"]);
 
-gulp.task("copyResources", function () {
-    log("copyResources (angular.min.js)");
-    gulp.src(jsSRC)
+gulp.task("copyAngularLib", function () {
+    log("copyAngularLib (angular.min.js)");
+    gulp.src(ngSRC)
+        .pipe(gulp.dest(ngDEST))
+});
+
+gulp.task('compressJS', function () {
+    log('Compessing JavaSript files');
+    gulp.src([jsSRC + "**/module.js", jsSRC + "**/*.js"])
+        .pipe(concat('all.js'))
         .pipe(gulp.dest(jsDEST))
+        .pipe(rename('all.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(jsDEST));
 });
 
 //gulp.task("default", ["sass"]);

@@ -30,11 +30,6 @@ public class SignInController {
         return testString;
     }
 
-    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
-    @ResponseBody
-    public Object doResult() {
-        List<User> users = userContainer.getAll();
-        return users;
-    }
+
 
 }

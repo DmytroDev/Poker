@@ -11,21 +11,13 @@ pokerApp.config(function ($routeProvider, $locationProvider) {
     when('/signup', {
         template: '<signup-form></signup-form>'
     }).    
-    when('/result', {
-        template: '<result-form></result-form>'
+    when('/topscores', {
+        template: '<topscores-form></topscores-form>'
     }).
-    when('/authenticate', {
-        template: '<authenticate-form></authenticate-form>'
+    when('/play', {
+        template: '<play-form></play-form>'
     })
-        .otherwise('/home');  // д.б. что то из уже перечисленных. Будет срабатывать 
-});
-
-
-pokerApp.controller('MainController', function MainController() {
-    this.helloTest = '1234';
-    this.louder = function () {
-        this.helloTest += '!';
-    }
+        .otherwise('/home');  // д.б. что то из уже перечисленных. Будет срабатывать by default.
 });
 
 pokerApp.component('signinForm', {
@@ -49,18 +41,19 @@ pokerApp.component('homeForm', {
     }
 });
 
-// for result page. url /statistics - can proccess Spring
-pokerApp.controller('ResultController', function MainController($http) {
-
+pokerApp.component('playForm', {
+    templateUrl: 'view/game/play.html',
 });
 
-/* TODO: fix code bellow later */
-pokerApp.component('resultForm', {
-    templateUrl: 'view/game/results.html',
-    controller: function ($http) {
-        $http.get('/statistic').then( function(response) {
+pokerApp.component('topscoresForm', {
+    templateUrl: 'view/game/topscores.html',
+    controller: function ($scope, $http) {
+        var vm = this;
+        $http.get('/statistic').
+        then( function(response) {
+            vm.topScores = response.data;
             console.log(response.data);
         } );
-        
     }
 });
+

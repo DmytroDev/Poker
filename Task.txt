@@ -3,7 +3,7 @@
 
 ==============
 1) разделить это на 3 файла.
-login-form.component.js
+topscoresForm.component.js
 добавить в html
 2) gulp
 Должен все файлы из папки js  объединить в all.js и положить.
