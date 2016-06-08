@@ -10,18 +10,29 @@ var gulp = require("gulp"),//http://gulpjs.com/
     log = util.log;
 
 /* require = launch concrete js-plugin (f.e.: gulp-minify-css, gulp-rename, etc).
-* */
+ * */
 var ngSRC = "node_modules/angular/angular.min.js",
+    ngRouteSRC = "node_modules/angular-route/angular-route.min.js",
+    jQuerySRC = "node_modules/jquery-custom/jquery.2/dist/jquery.min.js",
     ngDEST = "src/main/resources/static/vendor/",
     jsSRC = "src/main/resources/js/",
-    jsDEST = "src/main/resources/static/js";
+    jsDEST = "src/main/resources/static/js",
+    jsES6SRC = "src/main/resources/jsES6/**"
+    cssSRC = "src/main/resources/css/**",
+    cssDEST = "src/main/resources/static/css";
 
-gulp.task("default", ["compressJS"]);
+gulp.task("default", ["transfromFromES6", "compressJS", "copyCssFiles"]);
 
-gulp.task("copyAngularLib", function () {
-    log("copyAngularLib (angular.min.js)");
-    gulp.src(ngSRC)
-        .pipe(gulp.dest(ngDEST))
+gulp.task('copyJSLibs', function () {
+    log('Copying js files (vendor) ');
+    gulp.src([ngSRC, ngRouteSRC, jQuerySRC])
+        .pipe(gulp.dest(ngDEST));
+});
+
+gulp.task('copyCssFiles', function () {
+    log('copy css-files to folder static');
+    gulp.src(cssSRC)
+        .pipe(gulp.dest(cssDEST));
 });
 
 gulp.task('compressJS', function () {
@@ -34,30 +45,32 @@ gulp.task('compressJS', function () {
         .pipe(gulp.dest(jsDEST));
 });
 
+
 gulp.task("watch", function () {
     log("Watching js files for modifications");
     gulp.watch(jsSRC + "**/*.js", ["compressJS"]);
 });
 
-/*gulp.task('transform', () => {
- return gulp.src(jsSRC)
- .pipe(babel({
- presets: ['es2015']
- }))
- .pipe(gulp.dest(jsDEST));
- });*/
+gulp.task('transfromFromES6', () => {
+    return gulp.src(jsES6SRC)
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest(jsSRC));
+});
+
 //gulp.task("default", ["sass"]);
 
 /*gulp.task("sass", function () {
-    log("Generating CSS files " + (new Date()).toString());
-    gulp.src("src/main/resources/scss/all.scss")
-        .pipe(sass({style: 'expanded'}))
-        .pipe(autoprefixer("last 3 version", "safari 5", "ie 9"))
-        .pipe(gulp.dest(cssTarget))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(minifycss())
-        .pipe(gulp.dest(cssTarget));
-});*/
+ log("Generating CSS files " + (new Date()).toString());
+ gulp.src("src/main/resources/scss/all.scss")
+ .pipe(sass({style: 'expanded'}))
+ .pipe(autoprefixer("last 3 version", "safari 5", "ie 9"))
+ .pipe(gulp.dest(cssTarget))
+ .pipe(rename({suffix: '.min'}))
+ .pipe(minifycss())
+ .pipe(gulp.dest(cssTarget));
+ });*/
 
 
 
