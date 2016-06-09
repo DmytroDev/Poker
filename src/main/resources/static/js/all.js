@@ -81,15 +81,32 @@ pokerApp.component('signinForm', {
 pokerApp.component('signupForm', {
     templateUrl: 'view/signup/signup.html'
 });
+pokerApp.filter('humanize', function(){
+    return function(input){
+        if (parseInt(input) < 100000){
+            return input;
+        }else if (parseInt(input) < 10000000){
+            return 'million';
+        } else return 'billion';
+    }
+});
+
 'use strict';
 
 pokerApp.factory('statisticService', function ($http, $q) {
     var results = void 0;
+    var promise = void 0;
     return {
         getStatistics: getStatistics
         /*getStatistics: getStatistics - code for old versions*/
     };
     function getStatistics() {
+
+        if (!promise) {
+            promise = $http.get('/statistic').then(function (response) {
+                return response.data;
+            });
+        }
         if (!results) {
             return $http.get('/statistic').then(function (response) {
                 return response.data;

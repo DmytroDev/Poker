@@ -3,14 +3,12 @@ package com.univer.controller;
 import com.univer.helper.TOPScoreContainer;
 import com.univer.helper.UserContainer;
 /*import com.univer.model.CurrentUser;*/
+import com.univer.model.entity.RegistrationDTO;
 import com.univer.model.entity.TOPScore;
 import com.univer.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -39,6 +37,26 @@ public class HomeController {
         return "home/index";
     }
 
+    // на вход принимаем объект JSON
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    @ResponseBody
+    public String doLogin(@RequestBody RegistrationDTO registrationDTO) {
+        System.out.println("Login: " + registrationDTO.getUserName() +
+                "Password" + registrationDTO.getPassword());
+    /*    List<User> users = userContainer.getAll();
+        if (userContainer.areCredentialsValid(username, password, users) ) {
+            //LOG.info("User: [" + username + "] successful signin");
+            session.setAttribute("username", username);
+            return new ModelAndView("redirect:/homesignin");
+        } else {
+            ModelAndView mav = new ModelAndView("signin/signin");
+            mav.addObject("isvalid", false);
+            return mav;
+        }*/
+        return "signin/signin";
+    }
+
+/*
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ModelAndView doLogin(@RequestParam String username,
                                 @RequestParam String password,
@@ -54,6 +72,7 @@ public class HomeController {
             return mav;
         }
     }
+*/
 
     @RequestMapping(value = "/homesignin", method = RequestMethod.GET)
     public ModelAndView doSignIn() {
@@ -74,13 +93,6 @@ public class HomeController {
     @RequestMapping(value = "/statistic", method = RequestMethod.GET)
     @ResponseBody
     public Object doResult() {
-        List<TOPScore> topScores = topScoreContainer.getAll();
-        return topScores;
-    }
-
-    @RequestMapping(value = "/getRandomStat", method = RequestMethod.GET)
-    @ResponseBody
-    public Object doRandomStatistics() {
         List<TOPScore> topScores = topScoreContainer.getAll();
         return topScores;
     }

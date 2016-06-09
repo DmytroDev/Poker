@@ -37,7 +37,7 @@ gulp.task('copyCssFiles', function () {
 
 gulp.task('compressJS', function () {
     log('Compessing JavaSript files');
-    gulp.src([jsSRC + "**/module.js", jsSRC + "**/*.js"])
+    gulp.src([jsSRC + "**/*module.js", jsSRC + "**/*.js"])
         .pipe(concat('all.js'))
         .pipe(gulp.dest(jsDEST))
         .pipe(rename('all.min.js'))

@@ -3,7 +3,7 @@
     <ol>
         <div ng-repeat="topScore in $ctrl.topScores">
 
-            <li>{{topScore.userName}} : {{topScore.score}}</li>
+            <li>{{topScore.userName}} : {{topScore.score|humanize}}</li>
         </div>
     </ol>
 

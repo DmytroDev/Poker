@@ -23,7 +23,7 @@ public class TOPScoreContainer {
         topScoreList.add(new TOPScore("Lucky", 5_000_000L + random.nextInt(10000)));
         topScoreList.add(new TOPScore("Maverick", 100_000L + random.nextInt(10000)));
         topScoreList.add(new TOPScore("Dart Weider", 200_000_000L + random.nextInt(10000)));
-        topScoreList.add(new TOPScore("Beginner", 5_000L + random.nextInt(10000)));
+        topScoreList.add(new TOPScore("Beginner", 500L + random.nextInt(10000)));
 
         return topScoreList;
     }
