@@ -8,7 +8,9 @@
                                          th:text="${#dates.format(#dates.createNow(),'dd MMM yyyy')}">current data</span>
     </div>
     <div class="header-right-part">
-        Welcome, <span th:text="${session.username}"/>
+        <!--Welcome, <span th:text="${session.username}"/>-->
+        <!-- get data from Spring bean("currentUser")-->
+        Welcome, <span th:text="${@currentUser.getUserName()}"/>
     </div>
 
     <div class="navigation-div">

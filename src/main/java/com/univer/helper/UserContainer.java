@@ -2,11 +2,12 @@ package com.univer.helper;
 
 import com.univer.model.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class UserContainer {
     private List<User> userList;
     //private static volatile UserContainer instance;

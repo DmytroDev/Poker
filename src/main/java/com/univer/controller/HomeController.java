@@ -2,7 +2,6 @@ package com.univer.controller;
 
 import com.univer.helper.TOPScoreContainer;
 import com.univer.helper.UserContainer;
-/*import com.univer.model.CurrentUser;*/
 import com.univer.model.entity.RegistrationDTO;
 import com.univer.model.entity.TOPScore;
 import com.univer.model.entity.User;
@@ -10,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class HomeController {
+
+    /*private static org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(HomeController.class);*/
 
     @Autowired
     private UserContainer userContainer;
@@ -26,14 +25,8 @@ public class HomeController {
 /*    @Autowired
     private CurrentUser currentUser;*/
 
-/*    @RequestMapping(value = {"/index"})
-    public String test(HttpSession session) {
-        return "index";
-    }*/
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(HttpSession session) {
-        session.setAttribute("username", "guest");
+    public String index() {
         return "home/index";
     }
 
@@ -41,7 +34,7 @@ public class HomeController {
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     @ResponseBody
     public String doLogin(@RequestBody RegistrationDTO registrationDTO) {
-        System.out.println("Login: " + registrationDTO.getUserName() +
+        System.out.println("Login: " + registrationDTO.getUserName() + ", " +
                 "Password" + registrationDTO.getPassword());
     /*    List<User> users = userContainer.getAll();
         if (userContainer.areCredentialsValid(username, password, users) ) {
