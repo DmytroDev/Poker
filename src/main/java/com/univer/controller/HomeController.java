@@ -90,5 +90,10 @@ public class HomeController {
         return topScores;
     }
 
+/*    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public Object doLogin() {
+        return "John Smith";
+    }*/
 
 }
