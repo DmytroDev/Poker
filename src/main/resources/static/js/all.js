@@ -174,9 +174,8 @@ pokerApp.component('userserviceForm', {
     }
 });
 
-pokerApp.factory('userservice', function ($http) {
+pokerApp.factory('userservice', function () {
     function getName() {
-            /*$http.get('/userservice').then(function (response) {*/
                 return 'John Smith';
         }
     return {
