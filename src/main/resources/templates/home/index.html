@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="pokerApp" xmlns:th="http://www.thymeleaf.org">
+<!--<html ng-app="pokerApp" xmlns:th="http://www.thymeleaf.org">-->
+<html ng-app="pokerApp">
 <head>
     <title>Poker+</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -7,14 +8,16 @@
     <script type="application/javascript" src="vendor/jquery.min.js"></script>
     <script type="application/javascript" src="vendor/angular.min.js"></script>
     <script type="application/javascript" src="vendor/angular-route.min.js"></script>
+
     <base href="/">
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">Header</div>
-<ng-view/>
+<!--<div ng-include src="'view/fragments/header.html'"></div>-->
+<div id="content" class="content">
+    <ng-view/>
+</div>
+<div ng-include src="'view/fragments/footer.html'"></div>
 <script type="application/javascript" src="/js/all.js"></script>
-<div th:replace="fragments/footer :: footer">&copy; 2016 DmytroDev</div>
-
 </body>
 </html>
