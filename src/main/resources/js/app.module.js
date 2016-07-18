@@ -16,6 +16,9 @@ pokerApp.config(function ($routeProvider, $locationProvider) {
     }).
     when('/play', {
         template: '<play-form></play-form>'
+    }).
+    when('/userservice', {
+        template: '<userservice-form></userservice-form>'
     })
         .otherwise('/home');  // д.б. что то из уже перечисленных. Будет срабатывать by default.
 });
