@@ -1,4 +1,4 @@
-pokerApp.factory('userservice', function () {
+pokerApp.factory('userService', function () {
     function getName() {
                 return 'John Smith';
         }

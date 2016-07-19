@@ -10,23 +10,11 @@ import java.util.List;
 @Service
 public class UserContainer {
     private List<User> userList;
-    //private static volatile UserContainer instance;
 
     public UserContainer(){
         this.userList = createUserList();
     }
 
-    // realized singletone for multitreading
-/*    public static UserContainer getUsersContainer(){
-        if (instance == null){
-            synchronized (UserContainer.class){
-                if (instance == null){
-                    instance = new UserContainer();
-                }
-            }
-        }
-        return instance;
-    }*/
 
     private List<User> createUserList(){
         List<User> userList = new ArrayList<User>();

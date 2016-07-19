@@ -24,93 +24,65 @@ pokerApp.config(function ($routeProvider, $locationProvider) {
 });
 /* объявили новый модуль pokerApp */
 
-$(function() {
-
-  //Fisher-Yates Shuffle
-  function shuffle(o){
-    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-  }
-
-  function range(start, end) {
-    var result = [];
-    for (var i = start; i <= end; i++) {
-        result.push(i);
-    }
-    return result;
-  }
-
-  var deck = shuffle(range(1, 52));
-
-  function dealCard(cardNumber, max, target) {
-    if (cardNumber > max) {
-      return;
-    }
-
-    var rotationDegree = Math.floor(Math.random() * 60) - 30;
-    $('<img />', {
-      src: 'img/cards/' + deck.pop() + '.png',
-      style: 'transform: rotate(' + rotationDegree + 'deg);'
-    }).appendTo('#' + target);
-
-    setTimeout(function() {
-      dealCard(cardNumber + 1, max, target);
-    }, 500);
-  }
-
-  setTimeout(function() {
-    dealCard(1, 2, 'player1');
-  }, 500);
-
-  setTimeout(function() {
-    dealCard(1, 2, 'player2');
-  }, 1500);
-
-  setTimeout(function() {
-    dealCard(1, 5, 'table');
-  }, 2500);
-
-});
-
 pokerApp.component('headerForm', {
     templateUrl: 'view/fragments/header.html',
-    controller: function ($scope) {
-        $scope.date = new Date();
-        $scope.userName = 'guest';
-    }
 });
 
-/*pokerApp.component('pageHeader', {
-    templateUrl: 'fragments/header.html',
-    controller: function(userService) {
-        const vm = this;
-
-        function showLoginLogout(value1, value2) {
-            vm.showlogin = value1;
-            vm.showlogout = value2;
-        }
-
-        if(userService.getName()) {
-            showLoginLogout(false, true);
-        } else {
-            showLoginLogout(true, false);
-        }
-
-        this.logout = function() {
-            showLoginLogout(true, false);
-            userService.logOut();
-        };
-    }
-});*/
 
 pokerApp.component('homeForm', {
     templateUrl: 'view/home/home.html',
     controller: function ($scope) {
         $scope.date = new Date();
+        $scope.userName = 'Guest';
     }
 });
 pokerApp.component('playForm', {
     templateUrl: 'view/game/play.html',
+    controller: function(){
+        //Fisher-Yates Shuffle
+        function shuffle(o){
+            for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        }
+
+        function range(start, end) {
+            var result = [];
+            for (var i = start; i <= end; i++) {
+                result.push(i);
+            }
+            return result;
+        }
+
+        var deck = shuffle(range(1, 52));
+
+        function dealCard(cardNumber, max, target) {
+            if (cardNumber > max) {
+                return;
+            }
+
+            var rotationDegree = Math.floor(Math.random() * 60) - 30;
+            $('<img />', {
+                src: 'img/cards/' + deck.pop() + '.png',
+                style: 'transform: rotate(' + rotationDegree + 'deg);'
+            }).appendTo('#' + target);
+
+            setTimeout(function() {
+                dealCard(cardNumber + 1, max, target);
+            }, 500);
+        }
+
+        setTimeout(function() {
+            dealCard(1, 2, 'player1');
+        }, 500);
+
+        setTimeout(function() {
+            dealCard(1, 2, 'player2');
+        }, 1500);
+
+        setTimeout(function() {
+            dealCard(1, 5, 'table');
+        }, 2500);
+    }
 });
 pokerApp.component('signinForm', {
     templateUrl: 'view/signin/signin.html'
@@ -150,10 +122,10 @@ pokerApp.factory('statisticService', function ($http, $q) {
             });
             console.log(response.data); // - code for ES6
         } else {
-                $q(function (resolve) {
-                    return resolve(results);
-                });
-            }
+            $q(function (resolve) {
+                return resolve(results);
+            });
+        }
     }
 });
 pokerApp.component('topscoresForm', {
@@ -174,7 +146,7 @@ pokerApp.component('userserviceForm', {
     }
 });
 
-pokerApp.factory('userservice', function () {
+pokerApp.factory('userService', function () {
     function getName() {
                 return 'John Smith';
         }

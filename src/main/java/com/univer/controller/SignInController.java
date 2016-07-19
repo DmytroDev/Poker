@@ -17,11 +17,6 @@ public class SignInController {
     @Autowired
     private UserContainer userContainer;
 
-/*    @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public ModelAndView doLogin() {
-        ModelAndView mav = new ModelAndView("signin/signinTest");
-        return mav;
-    }*/
 
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
     @ResponseBody

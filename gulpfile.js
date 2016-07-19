@@ -59,18 +59,6 @@ gulp.task('transfromFromES6', () => {
         .pipe(gulp.dest(jsSRC));
 });
 
-//gulp.task("default", ["sass"]);
-
-/*gulp.task("sass", function () {
- log("Generating CSS files " + (new Date()).toString());
- gulp.src("src/main/resources/scss/all.scss")
- .pipe(sass({style: 'expanded'}))
- .pipe(autoprefixer("last 3 version", "safari 5", "ie 9"))
- .pipe(gulp.dest(cssTarget))
- .pipe(rename({suffix: '.min'}))
- .pipe(minifycss())
- .pipe(gulp.dest(cssTarget));
- });*/
 
 
 

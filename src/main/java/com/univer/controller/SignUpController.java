@@ -17,11 +17,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class SignUpController {
 
-    //private static org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(SignUpController.class);
-
-/*    @Autowired
-    UserServiceImpl userService;*/
-
     @Autowired
     private UserContainer userContainer;
 

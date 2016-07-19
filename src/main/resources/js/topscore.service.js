@@ -20,9 +20,9 @@ pokerApp.factory('statisticService', function ($http, $q) {
             });
             console.log(response.data); // - code for ES6
         } else {
-                $q(function (resolve) {
-                    return resolve(results);
-                });
-            }
+            $q(function (resolve) {
+                return resolve(results);
+            });
+        }
     }
 });
